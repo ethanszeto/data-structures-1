@@ -64,6 +64,7 @@ window.addEventListener("load", () => {
       }
 
       //need to draw some scale / tickmarks -- I think 4 is enough.
+      //need to calculate some stats + variance
     });
 });
 

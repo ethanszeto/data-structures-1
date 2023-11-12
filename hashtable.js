@@ -7,7 +7,7 @@ class HashTable {
   //ring Zm hash function over strings
   hash(key) {
     //abstracted, can use multiple hashes here
-    return hash3(key, this.max);
+    return hash2(key, this.max);
   }
 
   insert(key, value) {
