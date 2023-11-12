@@ -1,0 +1,21 @@
+body {
+  text-align: center;
+}
+
+#hashtable {
+  background-color: #cccccc;
+  margin-top: 20px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+#histogram {
+  background-color: #aaaaaa;
+}
+
+#text {
+  height: 200px;
+  width: 1080px;
+  resize: none;
+}

@@ -3,13 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="index.css" rel="stylesheet" type="text/css" />
     <script src="hashtable.js"></script>
+    <script src="ht.ctrl.js"></script>
     <script src="redblacktree.js"></script>
     <title>Document</title>
   </head>
   <body>
     <div id="hashtable">
-      <p id="printHash"></p>
+      <h1>HashTable Histogram</h1>
+      <canvas id="histogram" width="1080" height="540"></canvas>
+      <textarea id="text"></textarea>
+      <input type="number" id="max-hash" placeholder="Max Hash Size" />
+      <button id="generate-histogram">Generate</button>
+    </div>
+    <div id="redblacktree">
+      <canvas></canvas>
     </div>
   </body>
 </html>
