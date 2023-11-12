@@ -29,7 +29,30 @@ class RedBlackTree {
     }
 
     y.left = x;
-    x.p = y;
+    x.parent = y;
+  }
+
+  /**
+   * Rotates rightward
+   *
+   * @param {RedBlackNode} x
+   */
+  rightRotate(y) {
+    var x = y.left;
+    y.left = x.right;
+    if (x.right != this.nil) {
+      x.right.parent = y;
+    }
+    x.parent = y.parent;
+    if (y.parent == this.nil) {
+      this.root = x;
+    } else if (y == y.parent.right) {
+      y.parent.right = x;
+    } else {
+      y.parent.left = x;
+    }
+    x.right = y;
+    y.parent = x;
   }
 
   /**
@@ -63,25 +86,50 @@ class RedBlackTree {
     z.right = this.nil;
     z.color = c.red;
 
-    //this.insertFixup(z);
+    this.insertFixup(z);
   }
 
   insertFixup(z) {
-    while (z.parent.color == c.red) {
+    //z has to have a parent?
+    while (z.parent && z.parent.color == c.red) {
       if (z.parent == z.parent.parent.left) {
         var y = z.parent.parent.right;
-        if (y.color == c.red) {
+        if (y && y.color == c.red) {
+          // y has to exist ?
           z.parent.color = c.black;
-          y.color = black;
-          z.parent.parent.color = black;
+          y.color = c.black;
+          z.parent.parent.color = c.red;
           z = z.parent.parent;
         } else {
           if (z == z.parent.right) {
             z = z.parent;
+            this.leftRotate(z);
           }
+          z.parent.color = c.black;
+          z.parent.parent.color = c.red;
+          this.rightRotate(z.parent.parent);
+        }
+      } else {
+        var y = z.parent.parent.left;
+        if (y && y.color == c.red) {
+          // y has to exist ?
+          z.parent.color = c.black;
+          y.color = c.black;
+          z.parent.parent.color = c.red;
+          z = z.parent.parent;
+        } else {
+          if (z == z.parent.left) {
+            z = z.parent;
+            this.rightRotate(z);
+          }
+          z.parent.color = c.black;
+          z.parent.parent.color = c.red;
+          this.leftRotate(z.parent.parent);
         }
       }
     }
+
+    this.root.color = c.black;
   }
 }
 
@@ -111,10 +159,23 @@ window.addEventListener("load", () => {
     var rkt = new RedBlackTree();
     console.log(rkt);
     rkt.insert(new RedBlackNode(10));
-    console.log(rkt);
-    rkt.insert(new RedBlackNode(11));
-    console.log(rkt);
     rkt.insert(new RedBlackNode(9));
+    rkt.insert(new RedBlackNode(8));
+    rkt.insert(new RedBlackNode(7));
+    rkt.insert(new RedBlackNode(6));
+    rkt.insert(new RedBlackNode(5));
+    rkt.insert(new RedBlackNode(4));
+    // rkt.insert(new RedBlackNode(11));
+    // rkt.insert(new RedBlackNode(12));
+    // rkt.insert(new RedBlackNode(13));
+    // rkt.insert(new RedBlackNode(14));
+    // rkt.insert(new RedBlackNode(15));
+    // rkt.insert(new RedBlackNode(16));
+    // rkt.insert(new RedBlackNode(17));
+    // rkt.insert(new RedBlackNode(18));
+    // rkt.insert(new RedBlackNode(19));
+    // rkt.insert(new RedBlackNode(20));
+    // rkt.insert(new RedBlackNode(21));
     console.log(rkt);
   }
 
