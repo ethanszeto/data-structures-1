@@ -19,3 +19,15 @@ body {
   width: 1080px;
   resize: none;
 }
+
+#hash-output {
+  height: 200px;
+  width: 1080px;
+  resize: none;
+}
+
+#longest-collisions {
+  height: 50px;
+  width: 1080px;
+  resize: none;
+}

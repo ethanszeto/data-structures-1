@@ -13,12 +13,21 @@
     <div id="hashtable">
       <h1>HashTable Collision Histogram</h1>
       <canvas id="histogram" width="1080" height="540"></canvas>
-      <textarea id="text"></textarea>
+      <textarea id="text" placeholder="Enter Text to Hash"></textarea>
       <input type="number" id="max-hash" placeholder="Max Hash Size" />
       <button id="generate-histogram">Generate</button>
+      <!--<button id="histogram-stats">Show Stats</button>-->
+      <br />
+      <hr />
+      <p>Occurances of Unique Words:</p>
+      <textarea id="hash-output" readonly></textarea>
+      <br />
+      <hr />
+      <p>Longest 10% of Collisions</p>
+      <textarea id="longest-collisions" readonly></textarea>
     </div>
     <div id="redblacktree">
-      <canvas></canvas>
+      <canvas id="graph" width="1080" height="540"></canvas>
     </div>
   </body>
 </html>

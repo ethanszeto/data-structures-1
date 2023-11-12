@@ -132,6 +132,10 @@ class KVP {
     this.key = key;
     this.value = value;
   }
+
+  toString() {
+    return this.key + ": " + this.value;
+  }
 }
 
 //my attempt at a hash function
