@@ -117,7 +117,7 @@ window.addEventListener("load", () => {
         "Variance: " + variance.toFixed(2),
         "#ffffff",
         "20px 'Courier New'",
-        10,
+        100,
         35
       );
 
@@ -125,7 +125,7 @@ window.addEventListener("load", () => {
         "Mean: " + mean.toFixed(2),
         "#ffffff",
         "20px 'Courier New'",
-        260,
+        350,
         35
       );
 
@@ -133,7 +133,7 @@ window.addEventListener("load", () => {
         "Max: " + Math.max(...collisions),
         "#ffffff",
         "20px 'Courier New'",
-        510,
+        600,
         35
       );
 
@@ -141,7 +141,7 @@ window.addEventListener("load", () => {
         "Min: " + Math.min(...collisions),
         "#ffffff",
         "20px 'Courier New'",
-        760,
+        850,
         35
       );
 
