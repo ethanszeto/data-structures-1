@@ -34,7 +34,7 @@ body {
   background-color: #cccccc;
 }
 
-#graph {
+#rbt-graph {
   background-color: #aaaaaa;
 }
 
@@ -44,6 +44,10 @@ body {
   resize: none;
 }
 
-#binomialheap {
-  height: 1000px;
+#skiplist {
+  background-color: #cccccc;
+}
+
+#list-graph {
+  background-color: #aaaaaa;
 }

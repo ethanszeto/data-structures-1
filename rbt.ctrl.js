@@ -2,20 +2,15 @@ var canvas2;
 var ctx2;
 
 window.addEventListener("load", () => {
-  canvas2 = document.getElementById("graph");
+  canvas2 = document.getElementById("rbt-graph");
   ctx2 = canvas2.getContext("2d");
 
   var rbt = new RedBlackTree();
 
-  document.getElementById("rbt-view").addEventListener("click", () => {
-    ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
-    document.getElementById("rbt-output").value = rbt;
-    drawHeight(rbt);
-  });
-
   document.getElementById("rbt-insert").addEventListener("click", () => {
     ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
-    var input = document.getElementById("rbt-input").value;
+    var input = parseInt(document.getElementById("rbt-input").value);
+
     rbt.insertKey(input);
     document.getElementById("rbt-output").value = rbt;
     drawHeight(rbt);
@@ -23,7 +18,7 @@ window.addEventListener("load", () => {
 
   document.getElementById("rbt-search").addEventListener("click", () => {
     ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
-    var input = document.getElementById("rbt-input").value;
+    var input = parseInt(document.getElementById("rbt-input").value);
     var node = rbt.search(input);
     document.getElementById("rbt-output").value = node;
     drawHeight(rbt);
@@ -31,25 +26,38 @@ window.addEventListener("load", () => {
 
   document.getElementById("rbt-successor").addEventListener("click", () => {
     ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
-    var input = document.getElementById("rbt-input").value;
+    var input = parseInt(document.getElementById("rbt-input").value);
+    var node = rbt.successorKey(input);
+    document.getElementById("rbt-output").value = node;
     drawHeight(rbt);
   });
 
   document.getElementById("rbt-predecessor").addEventListener("click", () => {
     ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
-    var input = document.getElementById("rbt-input").value;
+    var input = parseInt(document.getElementById("rbt-input").value);
+    var node = rbt.predecessorKey(input);
+    document.getElementById("rbt-output").value = node;
     drawHeight(rbt);
   });
 
   document.getElementById("rbt-min").addEventListener("click", () => {
     ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
-
+    var node = rbt.min();
+    document.getElementById("rbt-output").value = node;
     drawHeight(rbt);
   });
 
   document.getElementById("rbt-max").addEventListener("click", () => {
     ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+    var node = rbt.max();
+    document.getElementById("rbt-output").value = node;
+    drawHeight(rbt);
+  });
 
+  document.getElementById("rbt-view").addEventListener("click", () => {
+    ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+    document.getElementById("rbt-input").value = "";
+    document.getElementById("rbt-output").value = rbt;
     drawHeight(rbt);
   });
 });
