@@ -4,6 +4,9 @@ var ctx;
 window.addEventListener("load", () => {
   canvas = document.getElementById("histogram");
   ctx = canvas.getContext("2d");
+
+  //maybe add controls so you can choose hash1 hash2 or hash3, for fun
+
   document
     .getElementById("generate-histogram")
     .addEventListener("click", () => {
@@ -27,7 +30,9 @@ window.addEventListener("load", () => {
         }
       }
 
-      //////////////////////////////////////////////////////////////
+      /////////////////////////////////////////////////////////////////////
+      /*                           Displays                              */
+      /////////////////////////////////////////////////////////////////////
 
       //output hash
       for (let i = 0; i < hashT.table.length; i++) {
@@ -214,6 +219,10 @@ window.addEventListener("load", () => {
       }
     });
 });
+
+/////////////////////////////////////////////////////////////////////
+/*                        Auxillary Classes                        */
+/////////////////////////////////////////////////////////////////////
 
 class Probability {
   static variance(list) {
