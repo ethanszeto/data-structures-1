@@ -1,13 +1,11 @@
 body {
   text-align: center;
+  background-color: #000000;
 }
 
 #hashtable {
   background-color: #cccccc;
   margin-top: 20px;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%);
 }
 
 #histogram {
@@ -30,4 +28,22 @@ body {
   height: 50px;
   width: 1080px;
   resize: none;
+}
+
+#redblacktree {
+  background-color: #cccccc;
+}
+
+#graph {
+  background-color: #aaaaaa;
+}
+
+#rbt-output {
+  height: 540px;
+  width: 1080px;
+  resize: none;
+}
+
+#binomialheap {
+  height: 1000px;
 }

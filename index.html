@@ -4,30 +4,47 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="index.css" rel="stylesheet" type="text/css" />
+    <script defer src="ctrl.js"></script>
     <script defer src="hashtable.js"></script>
     <script defer src="ht.ctrl.js"></script>
     <script defer src="redblacktree.js"></script>
+    <script defer src="rbt.ctrl.js"></script>
     <title>Document</title>
   </head>
   <body>
-    <div id="hashtable">
-      <h1>Hash Table Collision Histogram</h1>
-      <canvas id="histogram" width="1080" height="540"></canvas>
-      <textarea id="text" placeholder="Enter Text to Hash"></textarea>
-      <input type="number" id="max-hash" placeholder="Max Hash Size" />
-      <button id="generate-histogram">Generate</button>
-      <!--<button id="histogram-stats">Show Stats</button>-->
-      <br />
-      <hr />
-      <p>Occurances of Unique Words:</p>
-      <textarea id="hash-output" readonly></textarea>
-      <br />
-      <hr />
-      <p>Longest 10% of Collisions</p>
-      <textarea id="longest-collisions" readonly></textarea>
-    </div>
-    <div id="redblacktree">
-      <canvas id="graph" width="1080" height="540"></canvas>
+    <div id="container">
+      <div id="hashtable">
+        <h1>Hash Table Collision Histogram</h1>
+        <canvas id="histogram" width="1080" height="540"></canvas>
+        <textarea id="text" placeholder="Enter Text to Hash"></textarea>
+        <br />
+        <input type="number" id="max-hash" placeholder="Max Hash Size" />
+        <button id="generate-histogram">Generate</button>
+        <!--<button id="histogram-stats">Show Stats</button>-->
+        <br />
+        <hr />
+        <p>Occurances of Unique Words:</p>
+        <textarea id="hash-output" readonly></textarea>
+        <br />
+        <hr />
+        <p>Longest 10% of Collisions</p>
+        <textarea id="longest-collisions" readonly></textarea>
+      </div>
+      <div id="redblacktree">
+        <h1>Red Black Tree</h1>
+        <canvas id="graph" width="1080" height="540"></canvas>
+        <br />
+        <input type="number" id="rbt-input" />
+        <button id="rbt-view">View Full Tree</button>
+        <button id="rbt-insert">Insert Value</button>
+        <button id="rbt-search">Search Value</button>
+        <button id="rbt-successor">Find Successor of Value</button>
+        <button id="rbt-predecessor">Find Predecessor of Value</button>
+        <button id="rbt-min">Find Min</button>
+        <button id="rbt-max">Find Max</button>
+        <textarea id="rbt-output" readonly></textarea>
+      </div>
+      <div id="binomialheap"></div>
     </div>
   </body>
 </html>

@@ -1,9 +1,9 @@
-var canvas;
-var ctx;
+var canvas1;
+var ctx1;
 
 window.addEventListener("load", () => {
-  canvas = document.getElementById("histogram");
-  ctx = canvas.getContext("2d");
+  canvas1 = document.getElementById("histogram");
+  ctx1 = canvas1.getContext("2d");
 
   //maybe add controls so you can choose hash1 hash2 or hash3, for fun
 
@@ -14,7 +14,7 @@ window.addEventListener("load", () => {
       var text = document.getElementById("text").value;
       var maxHash = document.getElementById("max-hash").value;
 
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
 
       var hashT = new HashTable(maxHash);
 
@@ -76,12 +76,12 @@ window.addEventListener("load", () => {
 
       //graph related code
 
-      const barWidth = canvas.width / maxHash;
+      const barWidth = canvas1.width / maxHash;
 
       var maxHeightNum1 = Math.max(...collisions);
       var maxHeightDenom1 = maxHeightNum1 * (8 / 7); //87.5% the way total
 
-      var maxHeightDenom2 = canvas.height;
+      var maxHeightDenom2 = canvas1.height;
 
       var denomRatio = maxHeightDenom2 / maxHeightDenom1;
 
@@ -93,7 +93,7 @@ window.addEventListener("load", () => {
       //cool animation for bars can be added here
       for (let i = 0; i < height.length; i++) {
         var xPos = i * barWidth;
-        var yPos = canvas.height - height[i];
+        var yPos = canvas1.height - height[i];
         var bar = new Rect(
           xPos,
           yPos,
@@ -101,7 +101,7 @@ window.addEventListener("load", () => {
           height[i],
           "#000000"
         );
-        bar.draw();
+        bar.draw(ctx1);
       }
 
       //need to draw some scale / tickmarks -- I think 4 is enough.
@@ -113,8 +113,8 @@ window.addEventListener("load", () => {
       var statsBackground = new Rect(
         0,
         0,
-        canvas.width,
-        canvas.height * 0.1,
+        canvas1.width,
+        canvas1.height * 0.1,
         "rgba(0,0,0,0.75)"
       );
 
@@ -153,9 +153,9 @@ window.addEventListener("load", () => {
       //////////////////////////////////////////
       var sideBar = new Rect(
         0,
-        canvas.height * 0.1,
+        canvas1.height * 0.1,
         100,
-        canvas.height * 0.9,
+        canvas1.height * 0.9,
         "rgba(0,0,0,0.6)"
       );
 
@@ -168,8 +168,8 @@ window.addEventListener("load", () => {
       for (let i = 1; i <= 4; i++) {
         var hbar = new Rect(
           100,
-          canvas.height - numHeightAtH * i + 1,
-          canvas.width - 100,
+          canvas1.height - numHeightAtH * i + 1,
+          canvas1.width - 100,
           2,
           "#ffffff"
         );
@@ -179,18 +179,18 @@ window.addEventListener("load", () => {
             "#ffffff",
             "20px 'Courier New'",
             30,
-            canvas.height - numHeightAtH * i + 10
+            canvas1.height - numHeightAtH * i + 10
           )
         );
-        hbar.draw();
+        hbar.draw(ctx1);
       }
 
-      var meanBarY = canvas.height - mean * denomRatio;
+      var meanBarY = canvas1.height - mean * denomRatio;
 
       var meanBar = new Rect(
         100,
         meanBarY + 1,
-        canvas.width - 100,
+        canvas1.width - 100,
         2,
         "#FF0000"
       );
@@ -204,18 +204,18 @@ window.addEventListener("load", () => {
       );
 
       //topbar
-      statsBackground.draw();
-      varWord.draw();
-      meanWord.draw();
-      maxWord.draw();
-      minWord.draw();
+      statsBackground.draw(ctx1);
+      varWord.draw(ctx1);
+      meanWord.draw(ctx1);
+      maxWord.draw(ctx1);
+      minWord.draw(ctx1);
 
       // graphical
-      sideBar.draw();
-      meanBar.draw();
-      meanBarWord.draw();
+      sideBar.draw(ctx1);
+      meanBar.draw(ctx1);
+      meanBarWord.draw(ctx1);
       for (let i = 0; i < hwordArr.length; i++) {
-        hwordArr[i].draw();
+        hwordArr[i].draw(ctx1);
       }
     });
 });
@@ -246,36 +246,5 @@ class Probability {
       total += list[i];
     }
     return total / list.length;
-  }
-}
-
-class Rect {
-  constructor(x, y, width, height, color) {
-    this.x = x;
-    this.y = y;
-    this.width = width;
-    this.height = height;
-    this.color = color;
-  }
-
-  draw() {
-    ctx.fillStyle = this.color;
-    ctx.fillRect(this.x, this.y, this.width, this.height);
-  }
-}
-
-class Word {
-  constructor(text, color, font, x, y) {
-    this.text = text;
-    this.color = color;
-    this.font = font;
-    this.x = x;
-    this.y = y;
-  }
-
-  draw() {
-    ctx.font = this.font;
-    ctx.fillStyle = this.color;
-    ctx.fillText(this.text, this.x, this.y);
   }
 }

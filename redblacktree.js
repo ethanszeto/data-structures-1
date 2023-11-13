@@ -48,7 +48,7 @@ class RedBlackTree {
    * Finds the node that is the successor to this node
    *
    * @param {RedBlackNode} x node
-   * @returns RedBlackNode
+   * @returns RedBlackNode / undefined
    */
   successor(x) {
     if (x.right) {
@@ -64,10 +64,21 @@ class RedBlackTree {
   }
 
   /**
-   * Finds the not that is the predecessor to this node
+   * Finds the node that is the successor of the node with the given key
+   *
+   * @param {*} key
+   * @returns RedBlackNode / undefined
+   */
+  successorKey(key) {
+    var x = this.search(key);
+    return x ? this.successor(x) : undefined;
+  }
+
+  /**
+   * Finds the node that is the predecessor to this node
    *
    * @param {RedBlackNode} x node
-   * @returns RedBlackNode
+   * @returns RedBlackNode / undefined
    */
   predecessor(x) {
     if (x.left) {
@@ -80,6 +91,17 @@ class RedBlackTree {
       }
       return y;
     }
+  }
+
+  /**
+   * Finds the node that is the successor of the node with the given key.
+   *
+   * @param {*} key
+   * @returns RedBlackNode / undefined
+   */
+  predecessorKey(key) {
+    var x = this.search(key);
+    return x ? this.predecessor(x) : undefined;
   }
 
   /**
@@ -212,6 +234,44 @@ class RedBlackTree {
 
     this.root.color = c.black;
   }
+
+  /**
+   * Insert a node with a value of 'key' into this RedBlackTree
+   *
+   * mutation
+   *
+   * @param {*} key
+   */
+  insertKey(key) {
+    this.insert(new RedBlackNode(key));
+  }
+
+  /**
+   * Height method
+   *
+   * @returns Height of this RedBlackTree
+   */
+  height() {
+    return this.heightRecur(this.root);
+  }
+
+  /**
+   * recursive height method
+   *
+   * @param {RedBlackNode} x
+   * @returns nat
+   */
+  heightRecur(x) {
+    if (!x) {
+      return 0;
+    } else {
+      return 1 + Math.max(this.heightRecur(x.left), this.heightRecur(x.right));
+    }
+  }
+
+  toString() {
+    return this.root ? this.root.toString() : undefined;
+  }
 }
 
 /**
@@ -293,6 +353,34 @@ class RedBlackNode {
   hasLeft() {
     return this.left ? true : false;
   }
+
+  toString() {
+    return this.toStringRecur(0);
+  }
+
+  toStringRecur(i) {
+    var output = "";
+
+    var carriage = "";
+    for (let j = 0; j < i; j++) {
+      carriage += "|---";
+    }
+
+    output += "value: " + this.key + " - " + this.color + "\n";
+    output +=
+      carriage +
+      "left child: {" +
+      (this.hasLeft() ? this.left.toStringRecur(i + 1) : "nil") +
+      "}\n";
+    output +=
+      carriage +
+      "right child: {" +
+      (this.hasRight() ? this.right.toStringRecur(i + 1) : "nil") +
+      "}\n" +
+      carriage.substring(0, carriage.length - 4);
+
+    return output;
+  }
 }
 
 /**
@@ -325,6 +413,7 @@ window.addEventListener("load", () => {
     rkt.insert(new RedBlackNode(19));
     rkt.insert(new RedBlackNode(20));
     rkt.insert(new RedBlackNode(21));
+    rkt.insertKey(22);
 
     console.log(rkt);
 
@@ -333,6 +422,8 @@ window.addEventListener("load", () => {
     console.log(rkt.predecessor(rkt.max()));
 
     console.log(rkt.successor(rkt.min()));
+
+    console.log(rkt.height());
   }
 
   testRedBlackTree();
