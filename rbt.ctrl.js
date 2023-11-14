@@ -10,9 +10,9 @@ window.addEventListener("load", () => {
   document.getElementById("rbt-insert").addEventListener("click", () => {
     ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
     var input = parseInt(document.getElementById("rbt-input").value);
-
     rbt.insertKey(input);
     document.getElementById("rbt-output").value = rbt;
+    document.getElementById("rbt-print").value = rbt.inorderWalk();
     drawHeight(rbt);
   });
 
@@ -21,6 +21,7 @@ window.addEventListener("load", () => {
     var input = parseInt(document.getElementById("rbt-input").value);
     var node = rbt.search(input);
     document.getElementById("rbt-output").value = node;
+    document.getElementById("rbt-print").value = rbt.inorderWalk();
     drawHeight(rbt);
   });
 
@@ -29,6 +30,7 @@ window.addEventListener("load", () => {
     var input = parseInt(document.getElementById("rbt-input").value);
     var node = rbt.successorKey(input);
     document.getElementById("rbt-output").value = node;
+    document.getElementById("rbt-print").value = rbt.inorderWalk();
     drawHeight(rbt);
   });
 
@@ -37,6 +39,7 @@ window.addEventListener("load", () => {
     var input = parseInt(document.getElementById("rbt-input").value);
     var node = rbt.predecessorKey(input);
     document.getElementById("rbt-output").value = node;
+    document.getElementById("rbt-print").value = rbt.inorderWalk();
     drawHeight(rbt);
   });
 
@@ -44,6 +47,7 @@ window.addEventListener("load", () => {
     ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
     var node = rbt.min();
     document.getElementById("rbt-output").value = node;
+    document.getElementById("rbt-print").value = rbt.inorderWalk();
     drawHeight(rbt);
   });
 
@@ -51,6 +55,7 @@ window.addEventListener("load", () => {
     ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
     var node = rbt.max();
     document.getElementById("rbt-output").value = node;
+    document.getElementById("rbt-print").value = rbt.inorderWalk();
     drawHeight(rbt);
   });
 
@@ -58,6 +63,7 @@ window.addEventListener("load", () => {
     ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
     document.getElementById("rbt-input").value = "";
     document.getElementById("rbt-output").value = rbt;
+    document.getElementById("rbt-print").value = rbt.inorderWalk();
     drawHeight(rbt);
   });
 });

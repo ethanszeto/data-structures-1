@@ -44,6 +44,12 @@ body {
   resize: none;
 }
 
+#rbt-print {
+  height: 50px;
+  width: 1080px;
+  resize: none;
+}
+
 #skiplist {
   background-color: #cccccc;
 }

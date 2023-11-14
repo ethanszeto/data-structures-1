@@ -269,6 +269,10 @@ class RedBlackTree {
     }
   }
 
+  inorderWalk() {
+    return this.root ? this.root.inorderWalk() : undefined;
+  }
+
   toString() {
     return this.root ? this.root.toString() : undefined;
   }
@@ -354,6 +358,15 @@ class RedBlackNode {
     return this.left ? true : false;
   }
 
+  inorderWalk() {
+    return (
+      (this.hasLeft() ? this.left.inorderWalk() : "") +
+      this.key +
+      ", " +
+      (this.hasRight() ? this.right.inorderWalk() : "")
+    );
+  }
+
   toString() {
     return this.toStringRecur(0);
   }
@@ -426,5 +439,5 @@ window.addEventListener("load", () => {
     console.log(rkt.height());
   }
 
-  testRedBlackTree();
+  //testRedBlackTree();
 });

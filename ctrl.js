@@ -1,3 +1,32 @@
+class Probability {
+  static variance(list) {
+    if (list.length == 1 || list.length == 0) {
+      return 0;
+    }
+
+    var mean = Probability.average(list);
+    var varNum = 0;
+
+    for (let i = 0; i < list.length; i++) {
+      varNum += Math.pow(list[i] - mean, 2);
+    }
+
+    return varNum / (list.length - 1);
+  }
+
+  static average(list) {
+    var total = 0;
+    for (let i = 0; i < list.length; i++) {
+      total += list[i];
+    }
+    return total / list.length;
+  }
+
+  static rand() {
+    return Math.floor(Math.random() * 2);
+  }
+}
+
 class Rect {
   constructor(x, y, width, height, color) {
     this.x = x;
