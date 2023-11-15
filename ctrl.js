@@ -25,6 +25,16 @@ class Probability {
   static rand() {
     return Math.floor(Math.random() * 2);
   }
+
+  static trials() {
+    var num = 1;
+    var counter = 0;
+    while (num == 1) {
+      counter++;
+      num = Probability.rand();
+    }
+    return counter;
+  }
 }
 
 class Rect {
