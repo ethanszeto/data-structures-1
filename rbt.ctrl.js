@@ -59,6 +59,17 @@ window.addEventListener("load", () => {
     drawHeight(rbt);
   });
 
+  document.getElementById("rbt-delete").addEventListener("click", () => {
+    ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+    var input = parseInt(document.getElementById("rbt-input").value);
+
+    rbt.deleteKey(input);
+
+    document.getElementById("rbt-output").value = rbt;
+    document.getElementById("rbt-print").value = rbt.inorderWalk();
+    drawHeight(rbt);
+  });
+
   document.getElementById("rbt-view").addEventListener("click", () => {
     ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
     document.getElementById("rbt-input").value = "";

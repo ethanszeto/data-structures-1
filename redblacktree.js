@@ -246,6 +246,41 @@ class RedBlackTree {
     this.insert(new RedBlackNode(key));
   }
 
+  deleteKey(key) {
+    this.delete(this.search(key));
+  }
+
+  delete(z) {
+    if (z.left == this.nil) {
+      this.transplant(z, z.right);
+    } else if (z.right == this.nil) {
+      this.transplant(z, z.left);
+    } else {
+      var y = z.right.min();
+      if (y != z.right) {
+        this.transplant(y, y.right);
+        y.right = z.right;
+        y.right.parent = y;
+      }
+      this.transplant(z, y);
+      y.left = z.left;
+      y.left.parent = y;
+    }
+  }
+
+  transplant(u, v) {
+    if (u.parent == this.nil) {
+      this.root = v;
+    } else if (u == u.parent.left) {
+      u.parent.left = v;
+    } else {
+      u.parent.right = v;
+    }
+    if (v != this.nil) {
+      v.parent = u.parent;
+    }
+  }
+
   /**
    * Height method
    *
