@@ -246,10 +246,23 @@ class RedBlackTree {
     this.insert(new RedBlackNode(key));
   }
 
+  /**
+   * Deletes node with given key if found
+   *
+   * @param {*} key
+   */
   deleteKey(key) {
-    this.delete(this.search(key));
+    var node = this.search(key);
+    if (node) {
+      this.delete(node);
+    }
   }
 
+  /**
+   * Deletes node z from this BST
+   *
+   * @param {RedBlackNode} z
+   */
   delete(z) {
     if (z.left == this.nil) {
       this.transplant(z, z.right);
@@ -268,6 +281,12 @@ class RedBlackTree {
     }
   }
 
+  /**
+   * Transplants nodes u v
+   *
+   * @param {RedBlackNode} u
+   * @param {RedBlackNode} v
+   */
   transplant(u, v) {
     if (u.parent == this.nil) {
       this.root = v;
