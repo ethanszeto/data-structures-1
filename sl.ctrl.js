@@ -20,7 +20,18 @@ window.addEventListener("load", () => {
 function drawSL(skiplist) {
   var array = skiplist.getStacks();
   //space begin and after
-  var boxDimension = canvas3.width / (array.length * 2 + 1);
+
+  var max = 0;
+  for (let i = 0; i < array.length; i++) {
+    if (max < array[i].length) {
+      max = array[i].length;
+    }
+  }
+
+  var boxDimension =
+    canvas3.width / (array.length * 2 + 1) > canvas3.height / max
+      ? canvas3.height / max
+      : canvas3.width / (array.length * 2 + 1);
   //counter for array indices
   var c = 0;
   //outer loop, deciding positions horizontally
@@ -30,17 +41,21 @@ function drawSL(skiplist) {
     for (let j = 0; j < array[c].length; j++) {
       var box = new Rect(
         xPos,
-        canvas3.height - j * boxDimension - boxDimension,
+        canvas3.height - j * boxDimension - boxDimension - j,
         boxDimension,
         boxDimension,
         "#000000"
       );
+
+      var keyVal =
+        array[c][j].key === -9007199254740991 ? "-∞" : array[c][j].key;
+
       var num = new Word(
-        array[c][j].key,
+        keyVal,
         "#ffffff",
-        "20px 'Courier New'",
-        xPos,
-        canvas3.height - j * boxDimension - boxDimension / 2
+        boxDimension / 2 + "px 'Courier New'",
+        xPos + boxDimension / 5,
+        canvas3.height - j * boxDimension - boxDimension / 3 - j
       );
       box.draw(ctx3);
       num.draw(ctx3);
