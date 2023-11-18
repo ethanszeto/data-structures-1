@@ -20,6 +20,14 @@ class SkipList {
     this.head.insert(key, height, null);
   }
 
+  search(key) {
+    return this.head.search(key);
+  }
+
+  delete(key) {
+    this.head.delete(key);
+  }
+
   getStacks() {
     return this.head.getStacks();
   }
@@ -48,8 +56,8 @@ class SkipListNode {
       //check for correct height to add at
       if (this.height() == height) {
         var node = new SkipListNode(key);
-        this.next = node;
         node.prev = this;
+        this.next = node;
 
         //need to add verticality fields. If you previously added one,
         //then you need to make it's "down" this newly added node
@@ -77,8 +85,8 @@ class SkipListNode {
           var node = new SkipListNode(key);
           node.prev = this;
           node.next = this.next;
-          this.next = node;
           this.next.prev = node;
+          this.next = node;
 
           //need to add verticality fields. If you previously added one,
           //then you need to make it's "down" this newly added node
@@ -96,6 +104,44 @@ class SkipListNode {
         }
       }
     }
+  }
+
+  search(key) {
+    if (this.key == key) {
+      return this.bottomNode().getStack([]);
+    } else if (this.key < key && this.hasNext()) {
+      if (this.next.key <= key) {
+        return this.next.search(key);
+      } else if (this.next.key > key && this.hasDown()) {
+        return this.down.search(key);
+      } else {
+        return;
+      }
+    } else if (this.key < key && this.hasDown()) {
+      return this.down.search(key);
+    } else {
+      return;
+    }
+  }
+
+  delete(key) {
+    var deleteList = this.search(key);
+    console.log(deleteList);
+    if (deleteList) {
+      for (let i = deleteList.length - 1; i >= 0; i--) {
+        if (deleteList[i].prev) {
+          deleteList[i].prev.next = deleteList[i].next;
+        }
+
+        if (deleteList[i].next) {
+          deleteList[i].next.prev = deleteList[i].prev;
+        }
+      }
+    }
+  }
+
+  equals(node) {
+    return Object.is(this, node);
   }
 
   hasUp() {
