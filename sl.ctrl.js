@@ -10,6 +10,7 @@ window.addEventListener("load", () => {
     ctx3.clearRect(0, 0, canvas3.width, canvas3.height);
 
     var input = parseInt(document.getElementById("sl-input").value);
+    document.getElementById("sl-input").value = "";
 
     skiplist.insert(input);
     drawSL(skiplist, null);
@@ -19,6 +20,7 @@ window.addEventListener("load", () => {
     ctx3.clearRect(0, 0, canvas3.width, canvas3.height);
 
     var input = parseInt(document.getElementById("sl-input").value);
+    document.getElementById("sl-input").value = "";
 
     skiplist.delete(input);
     drawSL(skiplist, null);
@@ -28,6 +30,7 @@ window.addEventListener("load", () => {
     ctx3.clearRect(0, 0, canvas3.width, canvas3.height);
 
     var input = parseInt(document.getElementById("sl-input").value);
+    document.getElementById("sl-input").value = "";
 
     var stack = skiplist.search(input);
 
