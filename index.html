@@ -11,6 +11,8 @@
     <script defer src="rbt.ctrl.js"></script>
     <script defer src="skiplist.js"></script>
     <script defer src="sl.ctrl.js"></script>
+    <script defer src="binomialheap.js"></script>
+    <script defer src="bh.ctrl.js"></script>
     <title>Document</title>
   </head>
   <body>
@@ -56,6 +58,17 @@
         <button id="sl-insert">Insert Value</button>
         <button id="sl-delete">Delete Value</button>
         <button id="sl-search">Search Value</button>
+      </div>
+      <div id="binomialheap">
+        <h1>Binomial Heap</h1>
+        <canvas id="bh-graph" width="1080" height="540"></canvas>
+        <br />
+        <input type="number" id="bh-input" />
+        <button id="bh-insert">Insert Value</button>
+        <button id="bh-extract-min">Extract Min Value</button>
+        <button id="bh-min">Find Min Value</button>
+        <button id="bh-view">View Full Graph</button>
+        <textarea id="bh-output" readonly></textarea>
       </div>
     </div>
   </body>

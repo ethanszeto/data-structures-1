@@ -57,3 +57,17 @@ body {
 #list-graph {
   background-color: #aaaaaa;
 }
+
+#binomialheap {
+  background-color: #cccccc;
+}
+
+#bh-graph {
+  background-color: #aaaaaa;
+}
+
+#bh-output {
+  height: 540px;
+  width: 1080px;
+  resize: none;
+}
