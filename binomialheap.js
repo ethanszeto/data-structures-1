@@ -15,18 +15,14 @@ class BinomialHeap {
   consolidate(array) {
     while (this.hasDuplicateOrder(array)) {
       let duplicates = this.findDuplicates(array);
-      if (duplicates[0].value < duplicates[1].value) {
-        duplicates[0].order += 1;
-        duplicates[0].children.push(duplicates[1]);
-        this.sortByOrderDescending(duplicates[0].children);
-        duplicates[1].parent = duplicates[0];
-        array.push(duplicates[0]);
-      } else {
-        duplicates[1].order += 1;
-        duplicates[1].children.push(duplicates[0]);
-        this.sortByOrderDescending(duplicates[1].children);
-        duplicates[0].parent = duplicates[1];
-        array.push(duplicates[1]);
+      if (duplicates) {
+        var s, l;
+        [s, l] = duplicates[0].value < duplicates[1].value ? [0, 1] : [1, 0];
+        duplicates[s].order += 1;
+        duplicates[s].children.push(duplicates[l]);
+        this.sortByOrderDescending(duplicates[s].children);
+        duplicates[l].parent = duplicates[s];
+        array.push(duplicates[s]);
       }
     }
     this.sortByOrderAscending(array);
@@ -61,6 +57,11 @@ class BinomialHeap {
     this.heaps = this.consolidate(this.heaps);
 
     return min.value;
+  }
+
+  delete(key) {
+    //search for key, make it -infinity
+    //float it up to the top, and then extract min
   }
 
   /**
