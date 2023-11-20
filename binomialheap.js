@@ -62,6 +62,42 @@ class BinomialHeap {
   delete(key) {
     //search for key, make it -infinity
     //float it up to the top, and then extract min
+    var output = null;
+    for (let i = 0; i < this.heaps.length; i++) {
+      if (!output) {
+        output = this.heaps[i].search(key);
+      }
+    }
+    console.log(output);
+
+    if (output) {
+      output.value = Number.MIN_SAFE_INTEGER;
+      output.float();
+      this.extractMin();
+    }
+  }
+
+  search(key) {
+    var output = null;
+    for (let i = 0; i < this.heaps.length; i++) {
+      if (output) {
+        return output;
+      } else {
+        output = this.heaps[i].search(key);
+      }
+    }
+
+    return output;
+  }
+
+  decreaseKey(oldKey, newKey) {
+    var node = this.search(oldKey);
+    if (node) {
+      if (newKey < node.value) {
+        node.value = newKey;
+        node.float();
+      }
+    }
   }
 
   /**
@@ -138,6 +174,32 @@ class BinHeapNode {
     this.parent = null;
     this.children = [];
     this.order = 0;
+  }
+
+  float() {
+    if (this.parent && this.value < this.parent.value) {
+      let val = this.value;
+      this.value = this.parent.value;
+      this.parent.value = val;
+      this.parent.float();
+    }
+  }
+
+  search(key) {
+    if (this.value == key) {
+      return this;
+    } else {
+      //recurse children
+      var output = null;
+      for (let i = 0; i < this.children.length; i++) {
+        if (output) {
+          return output;
+        } else {
+          output = this.children[i].search(key);
+        }
+      }
+      return output;
+    }
   }
 
   toString() {

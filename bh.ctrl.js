@@ -12,6 +12,26 @@ window.addEventListener("load", () => {
     console.log(binomialHeap);
   });
 
+  document.getElementById("bh-delete").addEventListener("click", () => {
+    var input = parseInt(document.getElementById("bh-input").value);
+    if (binomialHeap) {
+      binomialHeap.delete(input);
+    }
+    document.getElementById("bh-output").value = binomialHeap.toString();
+  });
+
+  document.getElementById("bh-search").addEventListener("click", () => {
+    var input = parseInt(document.getElementById("bh-input").value);
+    var output;
+    if (binomialHeap) {
+      output = binomialHeap.search(input);
+      console.log(output);
+      output = output ? output.toString() : "undefined";
+    }
+
+    document.getElementById("bh-output").value = output;
+  });
+
   document.getElementById("bh-min").addEventListener("click", () => {
     if (!binomialHeap) {
       document.getElementById("bh-output").value = "undefined";
