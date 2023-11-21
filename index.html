@@ -63,13 +63,17 @@
         <h1>Binomial Heap</h1>
         <canvas id="bh-graph" width="1080" height="540"></canvas>
         <br />
+        <p id="current-heap">Current Heap:</p>
         <input type="number" id="bh-input" />
         <button id="bh-insert">Insert Value</button>
         <button id="bh-delete">Delete Value</button>
         <button id="bh-search">Search Value</button>
+        <br />
+        <br />
         <button id="bh-min">Find Min Value</button>
         <button id="bh-extract-min">Extract Min Value</button>
         <button id="bh-view">View Full Graph</button>
+        <button id="bh-new">New Binomial Heap</button>
         <br />
         <br />
         <input type="number" id="bh-old-key" placeholder="Current Value" />
@@ -79,6 +83,9 @@
         <br />
         <input type="text" id="bh-name" />
         <button id="bh-save-as">Save As</button>
+        <br />
+        <p>Saved Heaps</p>
+        <div id="saved-heaps"></div>
         <br />
         <textarea id="bh-output" readonly></textarea>
       </div>

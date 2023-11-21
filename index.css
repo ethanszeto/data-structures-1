@@ -71,3 +71,10 @@ body {
   width: 1080px;
   resize: none;
 }
+
+#saved-heaps {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
